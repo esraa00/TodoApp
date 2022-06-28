@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = new Sequelize("sqlite:memory");
-const User = sequelize.define("Task", {
+const Task = sequelize.define("Task", {
   taskName: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -35,4 +35,4 @@ const User = sequelize.define("Task", {
   await sequelize.sync();
 })();
 
-module.exports = User;
+module.exports = Task;
