@@ -1,4 +1,4 @@
-const User = require("../../models/user");
+const User = require("../../sequelize/models/user");
 const deleteUser = async (req, res) => {
   const id = req.params.id;
   try {

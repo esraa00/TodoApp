@@ -1,4 +1,4 @@
-const User = require("../../models/user");
+const User = require("../../sequelize/models/user");
 const getAllUsers = async (req, res) => {
   try {
     const usersFound = await User.findAll();

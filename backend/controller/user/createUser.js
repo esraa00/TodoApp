@@ -1,4 +1,4 @@
-const User = require("../../models/user");
+const User = require("../../sequelize/models/user");
 const bcrypt = require("bcrypt");
 
 const createUser = async (req, res) => {

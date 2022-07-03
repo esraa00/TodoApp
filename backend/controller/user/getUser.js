@@ -1,4 +1,4 @@
-const User = require("../../models/user");
+const User = require("../../sequelize/models/user");
 const getUser = async (req, res) => {
   const id = req.params.id;
   try {
