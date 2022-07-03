@@ -1,4 +1,4 @@
-const Task = require("../../models/task");
+const Task = require("../../sequelize/models/task");
 const getAllTasks = async (req, res, next) => {
   try {
     const tasks = await Task.findAll();

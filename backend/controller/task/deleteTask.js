@@ -1,4 +1,4 @@
-const Task = require("../../models/task");
+const Task = require("../../sequelize/models/task");
 const deleteTask = async (req, res, next) => {
   const id = req.params.id;
   try {

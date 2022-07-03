@@ -1,4 +1,4 @@
-const Task = require("../../models/task");
+const Task = require("../../sequelize/models/task");
 const createTask = async (req, res, next) => {
   const { taskName, taskDescription, isCompleted } = req.body;
   try {
