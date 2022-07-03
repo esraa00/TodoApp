@@ -1,8 +1,8 @@
-const Task = require("../../sequelize/models/task");
+const { models } = require("../../sequelize/index");
 const createTask = async (req, res, next) => {
   const { taskName, taskDescription, isCompleted } = req.body;
   try {
-    const createdTask = await Task.create({
+    const createdTask = await models.Task.create({
       taskName,
       taskDescription,
       isCompleted,

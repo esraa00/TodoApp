@@ -1,4 +1,4 @@
-const User = require("../../sequelize/models/user");
+const { models } = require("../../sequelize/index");
 const bcrypt = require("bcrypt");
 
 const createUser = async (req, res) => {
@@ -7,7 +7,7 @@ const createUser = async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const createdUser = await User.create({
+    const createdUser = await models.User.create({
       firstName,
       lastName,
       email,

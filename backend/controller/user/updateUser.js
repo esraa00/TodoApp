@@ -1,4 +1,4 @@
-const User = require("../../sequelize/models/user");
+const { models } = require("../../sequelize/index");
 const bcrypt = require("bcrypt");
 
 const updateUser = async (req, res) => {
@@ -6,7 +6,7 @@ const updateUser = async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
 
   try {
-    const userFound = await User.findOne({ where: { id } });
+    const userFound = await models.User.findOne({ where: { id } });
     if (!userFound)
       return res
         .status(404)
@@ -14,7 +14,7 @@ const updateUser = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const updatedUser = await User.update(
+    const updatedUser = await models.User.update(
       { firstName, lastName, email, password: hashedPassword },
       { where: { id } }
     );

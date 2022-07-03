@@ -1,8 +1,8 @@
-const User = require("../../sequelize/models/user");
+const { models } = require("../../sequelize/index");
 const getUser = async (req, res) => {
   const id = req.params.id;
   try {
-    const userFound = await User.findOne({ where: { id } });
+    const userFound = await models.User.findOne({ where: { id } });
     if (!userFound)
       return res
         .status(404)

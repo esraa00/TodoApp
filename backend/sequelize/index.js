@@ -8,6 +8,15 @@ const sequelize = new Sequelize("task", "root", "Esraaguest5056@", {
   logging: false,
 });
 
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("connected to the database successfully");
+  } catch (error) {
+    console.log(error);
+  }
+})();
+
 const modelDefiners = [
   require("./models/user"),
   require("./models/role"),
@@ -18,6 +27,8 @@ modelDefiners.map((modelDefiner) => {
   modelDefiner(sequelize);
 });
 
+applyAssociation(sequelize);
+
 (async () => {
   try {
     await sequelize.sync({ alter: true });
@@ -27,6 +38,4 @@ modelDefiners.map((modelDefiner) => {
   }
 })();
 
-applyAssociation(sequelize);
-
-console.error("all good");
+module.exports = sequelize;
