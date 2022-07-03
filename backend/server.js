@@ -1,12 +1,10 @@
 const express = require("express");
 const app = express();
+const sequelize = require("./sequelize/index");
 
 const taskRoutes = require("./routes/task");
 const userRoutes = require("./routes/user");
 const catchErrorsMiddleware = require("./middleware/catchErrors");
-
-const connectToDatabase = require("./database/connection");
-connectToDatabase();
 
 app.use(express.json());
 app.use(express.urlencoded());
