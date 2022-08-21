@@ -9,7 +9,7 @@ beforeAll(async () => {
 describe("authentication", () => {
   describe(" post sign in user route", () => {
     describe("given user is found", () => {
-      it("should return 200 status , access token and refresh token", async () => {
+      it("should return 200", async () => {
         const response = await request(app)
           .post("/api/v1/auth/signIn")
           .send({
@@ -17,15 +17,6 @@ describe("authentication", () => {
             password: "sandra",
           })
           .expect(200);
-        expect((response) => {
-          should(cookieParser.parse(response));
-        });
-        response.cookie.map((cookie) => {
-          console.log(cookie);
-        });
-        // expect(response.cookie).toBe(
-        //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6MTY2MDQ0NDg0MSwiZXhwIjoxNjYxMDQ5NjQxfQ.pniLcI6wXqWooQgO1oH4ZvDgoQ-ul3jVYytT8FpJEzU"
-        // );
       });
     });
     describe("given user is not found", () => {
@@ -42,7 +33,7 @@ describe("authentication", () => {
   });
 
   describe("post sign up user route", () => {
-    describe("gven user is already exist", () => {
+    describe("given user is already exist", () => {
       it("should return 409 status", async () => {
         await request(app)
           .post("/api/v1/auth/signUp")
@@ -50,9 +41,22 @@ describe("authentication", () => {
             firstName: "sandra",
             lastName: "serag",
             email: "sandra@gmail.com",
-            password: "sandra",
+            password: "Sandraguest5056@",
           })
           .expect(409);
+      });
+    });
+    describe("given user doesn't exist", () => {
+      it("should return 201 status", async () => {
+        await request(app)
+          .post("/api/v1/auth/signUp")
+          .send({
+            firstName: "sara",
+            lastName: "mohamed",
+            email: "sara@gmail.com",
+            password: "Saraguest5056@",
+          })
+          .expect(201);
       });
     });
   });

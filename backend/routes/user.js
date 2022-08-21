@@ -5,12 +5,15 @@ const {
   deleteUser,
   getUser,
   getAllUsers,
-  updateUser,
+  updateUserInfo,
+  updateUserPass,
 } = require("../controller/user/index.js");
 
-router.route("/create").post(createUser);
-router.route("/get/:id").get(getUser);
-router.route("/delete/:id").get(deleteUser);
-router.route("/getAll").get(getAllUsers);
-router.route("/update/:id").post(updateUser);
+router.route("/").post(createUser);
+router.route("/").get(getAllUsers);
+router.route("/:id").get(getUser);
+router.route("/delete").post(deleteUser);
+router.route("/updateInfo/:id").post(updateUserInfo);
+router.route("/updatePass/:id").post(updateUserPass);
+
 module.exports = router;

@@ -1,3 +1,8 @@
 const { catchErrors } = require("./catchErrors");
-const { checkIfUserIsAuthorized } = require("./checkIfUserIsAuthorized");
-module.exports = { catchErrors, checkIfUserIsAuthorized };
+const { checkIfUserIsAuthenticated } = require("./checkIfUserIsAuthenticated");
+const { getUserAuthorization } = require("./getUserAuthorization");
+module.exports = {
+  catchErrors,
+  checkIfUserIsAuthenticated,
+  getUserAuthorization,
+};

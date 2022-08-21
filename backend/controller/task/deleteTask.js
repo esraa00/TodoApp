@@ -1,15 +1,15 @@
-const { models } = require("../../sequelize/index");
+const { sequelize } = require("../../sequelize/index");
 const deleteTask = async (req, res, next) => {
   const id = req.params.id;
   try {
-    const taskFound = await models.Task.findOne({ where: { id } });
+    const taskFound = await sequelize.models.Task.findByPk(id);
 
     if (!taskFound)
       return res
         .status(400)
         .send({ status: "failure", message: "task wasn't found" });
 
-    const task = models.Task.destroy({ where: { id } });
+    const task = await sequelize.models.Task.destroy({ where: { id } });
     res
       .status(200)
       .send({ status: "success", message: "deleted successfully" });

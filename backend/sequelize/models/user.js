@@ -7,7 +7,10 @@ module.exports = (sequelize) => {
       allowNull: false,
       validate: {
         is: /[a-zA-Z]+/,
-        len: [2, 10],
+        min: 2,
+        notNull: {
+          msg: "first name can't be empty",
+        },
       },
     },
     lastName: {
@@ -15,20 +18,32 @@ module.exports = (sequelize) => {
       allowNull: false,
       validate: {
         is: /[a-zA-Z]+/,
-        len: [2, 10],
+        min: 2,
+        notNull: {
+          msg: "lastName can't be empty",
+        },
       },
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: {
+        args: true,
+        msg: "email is already taken",
+      },
       validate: {
-        isEmail: { msg: "please provide valid email" },
+        isEmail: { msg: "email is not valid" },
+        notNull: { msg: "email can't be empty" },
       },
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notNull: {
+          msg: "password can't be empty",
+        },
+      },
     },
   });
 };

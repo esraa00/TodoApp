@@ -8,9 +8,9 @@ const {
   getAllTasks,
 } = require("../controller/task/index.js");
 
-router.route("/create").post(createTask);
-router.route("/get/:id").get(getTask);
-router.route("/getAll").get(getAllTasks);
+router.route("/").post(createTask);
+router.route("/").get(getAllTasks);
+router.route("/:id").get(getTask);
 router.route("/update/:id").post(updateTask);
 router.route("/delete/:id").get(deleteTask);
 

@@ -1,24 +1,13 @@
-const { models } = require("../../sequelize/index");
-const bcrypt = require("bcrypt");
-
-const createUser = async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
-
+const HttpStatusCode = require("../../enum/HttpStatusCode");
+const Messages = require("../../enum/Messages");
+const createUserService = require("../../services/user/createUser.service");
+const response = require("../../apiResonse/response");
+const createUser = async (req, res, next) => {
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const createdUser = await models.User.create({
-      firstName,
-      lastName,
-      email,
-      password: hashedPassword,
-    });
-
-    res
-      .status(200)
-      .send({ status: "success", response: "user created successfully" });
+    await createUserService(req.body, res.locals.role);
+    response(res, HttpStatusCode.CREATED, Messages.userCreatedSuccessfully);
   } catch (error) {
-    res.status(500).send(error);
+    next(error);
   }
 };
 

@@ -6,13 +6,13 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: {
-        args: true,
-        msg: "task name must be unique",
+        args: "taskName",
+        msg: "task name already exists",
       },
       validate: {
         notEmpty: {
           args: true,
-          msg: "task name cannot be empty",
+          msg: "task name can't be empty",
         },
       },
     },
@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: "task description cannot be empty",
+          msg: "task description can't be empty",
         },
       },
     },
