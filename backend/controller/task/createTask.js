@@ -1,16 +1,10 @@
-const { sequelize } = require("../../sequelize/index");
+const response = require("../../apiResonse/response");
+const HttpStatusCode = require("../../enum/HttpStatusCode");
+const createTaskService = require("../../services/task/createTask.service");
 const createTask = async (req, res, next) => {
-  const { taskName, taskDescription, isCompleted } = req.body;
   try {
-    const createdTask = await sequelize.models.Task.create({
-      taskName,
-      taskDescription,
-      isCompleted,
-    });
-
-    res
-      .status(200)
-      .send({ status: "success", message: "created task successfully" });
+    const createdTask = await createTaskService(req.body);
+    response(res, HttpStatusCode.CREATED, createdTask);
   } catch (error) {
     next(error);
   }

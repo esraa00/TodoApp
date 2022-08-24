@@ -1,11 +1,7 @@
 const deleteUserService = require("../../services/user/deleteUser.service");
 const deleteUser = async (req, res, next) => {
   try {
-    await deleteUserService(
-      req.body.userIdToBeDeleted,
-      req.body.currentUserId,
-      res.locals.id
-    );
+    await deleteUserService(req.params, res.locals.id);
   } catch (error) {
     next(error);
   }

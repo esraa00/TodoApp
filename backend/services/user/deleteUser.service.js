@@ -6,7 +6,8 @@ const {
 const { sequelize } = require("../../sequelize/index");
 const Messages = require("../../enum/Messages");
 
-const deleteUserService = async (userIdToBeDeleted, currentUserId, role) => {
+const deleteUserService = async (userInformation, role) => {
+  const { currentUserId, userIdToBeDeleted } = userInformation;
   if (role !== "Admin") {
     if (currentUserId !== userIdToBeDeleted) {
       throw new unauthorizedError("you must provide two identical id's");

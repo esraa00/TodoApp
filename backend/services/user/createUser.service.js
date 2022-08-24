@@ -23,7 +23,8 @@ const createUserService = async (userToBeCreated, role) => {
     createdUser.RoleId = roleId;
   }
 
-  await createdUser.save();
+  const user = await createdUser.save();
+  return user.remove("password");
 };
 
 module.exports = createUserService;

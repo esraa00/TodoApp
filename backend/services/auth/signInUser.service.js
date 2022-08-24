@@ -17,18 +17,20 @@ const signInService = async (userToBeSignedIn) => {
 
   if (!userFound) throw new notFoundError(Messages.emailNotFound);
 
-  const { id, password: userPassword } = userFound.toJSON();
-
-  const isPasswordMatches = await bcrypt.compare(password, userPassword);
+  const isPasswordMatches = await bcrypt.compare(password, userFound.password);
 
   if (!isPasswordMatches)
     throw new unprocessableEntityError(Messages.passwordIsNotCorrect);
 
-  const accessToken = createAccessToken(id);
+  const accessToken = createAccessToken(userFound.id);
 
-  const refreshToken = createRefreshToken(id);
+  const refreshToken = createRefreshToken(userFound.id);
 
-  return { accessToken, refreshToken };
+  return {
+    accessToken,
+    refreshToken,
+    user: userFound.removeAttribute("password"),
+  };
 };
 
 module.exports = signInService;
