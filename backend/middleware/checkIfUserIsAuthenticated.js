@@ -4,7 +4,6 @@ const createAccessToken = require("../helper/createAccessToken");
 const createRefreshToken = require("../helper/createRefreshToken");
 const Messages = require("../enum/Messages");
 const checkIfUserIsAuthenticated = (req, res, next) => {
-  var id;
   try {
     const { accessToken, refreshToken } = req.cookies;
     if (!accessToken) {
